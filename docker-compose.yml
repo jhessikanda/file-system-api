@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  redis-server:
+    image: redis
+    command: redis-server
+    container_name: redis-server
+    ports:
+      - "6379:6379"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: nodejs
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - REDIS_HOST=redis-server
+      - REDIS_PORT=6379
+    volumes:
+      - /Users:/Users:cached

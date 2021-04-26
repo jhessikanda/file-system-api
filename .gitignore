@@ -1,0 +1,9 @@
+# package directories
+node_modules
+
+vscode
+.vscode
+*.error
+*.log
+.DS_Store
+.env
